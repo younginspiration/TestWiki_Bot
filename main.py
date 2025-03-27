@@ -102,7 +102,7 @@ def generate_report():
         report_content += "== Grace Periods ==\n" + "\n".join(grace_period_entries) + "\n"
     
     edit_params = {
-        "action": "edit", "title": "Test Wiki:Activity report", "text": report_content,
+        "action": "edit", "title": "Activity", "text": report_content,
         "summary": "Updating activity report",
         "token": session.get(WIKI_API_URL, params={"action": "query", "meta": "tokens", "format": "json"}).json()["query"]["tokens"]["csrftoken"],
         "format": "json"
