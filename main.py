@@ -13,7 +13,7 @@ BOT_PASSWORD = os.getenv("BOT_PASSWORD")
 
 
 # User groups to include (excluding stewards)
-USER_GROUPS = ["sysop", "bureaucrat", "interface-admin", "suppress"]
+USER_GROUPS = ["sysop", "bureaucrat", "interface-admin", "non-stewardsuppress"]
 
 # Users to exclude
 EXCLUDED_USERS = {"Dmehus", "Drummingman", "Justarandomamerican", "MacFan4000", "Abuse filter", "Bosco-bot", "DodoBot", "FuzzyBot", "MacFanBot", "Paflidychat"}
