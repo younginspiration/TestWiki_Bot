@@ -1,3 +1,7 @@
+IMPORTANT NOTICE : THIS CODE IS NOT UPTO DATE AND DOES NOT HANDLE ERRORS, USE WITH CAUTION
+
+This bot generates an inactivity report for administrators, bureaucrats, interface administrators, and non-steward suppressors on TestWiki. It checks the last activity of users in these roles and categorizes them based on their activity status. The report is then posted to https://testwiki.wiki/wiki/Activity
+
 How It Works
 1. Login: The bot logs in using the provided credentials.
 2. Fetch Users: It retrieves a list of users in the specified groups, excluding:
