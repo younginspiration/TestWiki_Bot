@@ -1,22 +1,18 @@
 import datetime
 import requests
-import os
-from dotenv import load_dotenv
+
 # TestWiki API endpoint
 WIKI_API_URL = "https://testwiki.wiki/api.php"
 
 # Bot credentials
-load_dotenv()
-
-BOT_USERNAME = os.getenv("BOT_USERNAME")
-BOT_PASSWORD = os.getenv("BOT_PASSWORD")
-
+BOT_USERNAME = ""
+BOT_PASSWORD = ""
 
 # User groups to include (excluding stewards)
 USER_GROUPS = ["sysop", "bureaucrat", "interface-admin", "non-stewardsuppress"]
 
 # Users to exclude
-EXCLUDED_USERS = {"Dmehus", "Drummingman", "Justarandomamerican", "MacFan4000", "Abuse filter", "Bosco-bot", "DodoBot", "FuzzyBot", "MacFanBot", "Paflidychat"}
+EXCLUDED_USERS = {"EPIC", "Dmehus", "Drummingman", "Justarandomamerican", "MacFan4000", "Abuse filter", "Bosco-bot", "DodoBot", "FuzzyBot", "MacFanBot", "Paflidychat"}
 
 # Login to the wiki
 def login():
@@ -79,7 +75,9 @@ def get_users_by_group(session):
 # Generate report
 def generate_report():
     session = login()
-    report_content = "== Admins, Bureaucrats, Interface Admins, and Non-Steward Suppressors ==\n\n"
+    last_updated = datetime.datetime.now(datetime.timezone.utc).strftime("%d-%m-%Y %H:%M UTC")
+    report_content = f"== Last updated: {last_updated} ==\n\n"
+    report_content += "== Admins, Bureaucrats, Interface Admins, and Non-Steward Suppressors ==\n\n"
     report_content += '{| class="wikitable"\n! Username !! Last Action !! Status\n'
     users = get_users_by_group(session)
     grace_period_entries = []
@@ -90,8 +88,7 @@ def generate_report():
             last_activity_str = last_activity.strftime("%d-%m-%Y")
             if (datetime.datetime.now(datetime.timezone.utc) - last_activity).days > 75:
                 grace_period = (last_activity + datetime.timedelta(days=90)).strftime("%d-%m-%Y")
-                if (datetime.datetime.now(datetime.timezone.utc) - last_activity).days > 75:
-                    grace_period_entries.append(f"# {user} ; {last_activity_str} ; {grace_period}")
+                grace_period_entries.append(f"# {user} ; {last_activity_str} ; {grace_period}")
         else:
             last_activity_str = "Never"
         status = get_activity_status(last_activity)
