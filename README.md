@@ -1,4 +1,5 @@
-IMPORTANT NOTICE : THIS CODE IS NOT UPTO DATE AND DOES NOT HANDLE ERRORS, USE WITH CAUTION
+IMPORTANT NOTICE : THIS CODE DOES NOT HANDLE ERRORS, USE WITH CAUTION
+Note : Since I run my bot locally on my own machine, I don't use environment variables that's why you see that I hard coded the username and password in this code.
 
 This bot generates an inactivity report for administrators, bureaucrats, interface administrators, and non-steward suppressors on TestWiki. It checks the last activity of users in these roles and categorizes them based on their activity status. The report is then posted to https://testwiki.wiki/wiki/Activity
 
